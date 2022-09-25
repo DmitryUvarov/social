@@ -1,0 +1,15 @@
+.MyPosts {
+    margin-top: 45px;
+
+    .Title {
+        font-size: 35px;
+        padding: 15px 10px;
+        border-radius: 6px;
+        background: #ebf2fa;
+        margin-bottom: 40px;
+    }
+}
+.Posts {
+    display: flex;
+    flex-direction: column-reverse;
+}

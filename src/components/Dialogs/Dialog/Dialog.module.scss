@@ -1,0 +1,21 @@
+.dialog {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    background: rgba(255, 255, 255, .9);
+    padding: 10px 16px;
+    transition: all .3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    &.active {
+        background: #ebf2fa;
+    }
+}
+.name {
+    font-weight: 600;
+    color: #000;
+}

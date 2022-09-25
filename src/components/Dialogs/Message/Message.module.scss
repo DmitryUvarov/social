@@ -1,0 +1,18 @@
+.message {
+    background: #fff;
+    width: max-content;
+    max-width: 60%;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    &:not(:last-child) {
+        margin-bottom: 15px;
+    }
+
+    &.active {
+        margin-left: auto;
+        background: rgba(6, 214, 158, 0.6)
+    }
+}
