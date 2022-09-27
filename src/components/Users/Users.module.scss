@@ -1,3 +1,82 @@
 .usersTitle {
     margin-bottom: 20px;
 }
+
+.paginations {
+    margin: 10px 0 25px;
+    display: flex;
+    column-gap: 10px;
+    & span {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #d6d6d6;
+        color: #000;
+        font-size: 17px;
+        font-weight: 600;
+    }
+}
+span.selectedPage {
+    background-color: red;
+    color: #fff;
+    font-weight: 700;
+}
+span.arrrow {
+    background-color: red;
+    color: #fff;
+    font-weight: 700;
+    padding: 0 10px;
+    width: max-content;
+    &.disabled {
+        background-color: #d6d6d6;
+        opacity: .8;
+        cursor: not-allowed;
+    }
+}
+
+.search {
+    display: flex;
+    column-gap: 10px;
+
+    & input {
+        width: 100%;
+        border: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        line-height: 120%;
+        font-weight: 500;
+        border-radius: 6px;
+        box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+        padding: 10px;
+        &:focus {
+            outline: 2px solid #000;
+            box-shadow: rgb(149 157 165 / 80%) 0px 8px 24px;
+        }
+    }
+    & button {
+        cursor: pointer;
+        padding: 15px 20px 14px;
+        border: 0;
+        background-color: #06d6a0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        border-radius: 6px;
+        box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+        color: #fff;
+        transition: all .3s ease;
+
+        &:hover {
+            box-shadow: rgb(149 157 165 / 80%) 0px 8px 24px;
+        }
+    }
+}
+
+.query {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+}

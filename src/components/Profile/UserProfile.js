@@ -1,17 +1,21 @@
 import React from 'react'
 import s from './UserProfile.module.scss';
+import userPhoto from '../../assets/images/user.jpg'
 
-export const UserProfile = () => {
+export const UserProfile = (props) => {
+
     return (
         <div className={s.UserProfile}>
             <div className={s.UserImage}>
-                <img src='https://static5.depositphotos.com/1037262/443/i/450/depositphotos_4436189-stock-photo-paradise-beach.jpg' width="250" height="250" />
+                <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} width="250" height="250" />
             </div>
             <div className={s.UserInfo}>
-                <h4 className={s.UserName}>Dmytro Uvarov</h4>
-                <p>Bithday: 3:10:2003</p>
-                <p>Ciry: Kyiv</p>
-                <p>Web Site: </p>
+                <h4 className={s.UserName}>{props.profile.fullName}</h4>
+                <p>{props.profile.aboutMe}</p>
+
+                <ul>
+                    <li><a href={props.profile.contacts.github}>Github</a></li>
+                </ul>
             </div>
         </div>
     )

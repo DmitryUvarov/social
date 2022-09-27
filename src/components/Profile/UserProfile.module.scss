@@ -10,6 +10,13 @@
             margin-bottom: 5px;
         }
     }
+
+    & ul {
+        margin-top: 25px;
+        & a {
+            text-decoration: none;
+        }
+    }
 }
 .UserImage {
     border-radius: 50%;

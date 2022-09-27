@@ -1,8 +1,10 @@
 import React from 'react'
 import style from './User.module.scss'
+import userPhoto from '../../../assets/images/user.jpg'
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-    console.log(props)
+    let user = props.user;
 
     let onSubscribe = () => {
         props.subscribe(props.user.id)
@@ -14,12 +16,16 @@ const User = (props) => {
     return (
         <div className={style.user}>
             <div className={style.userImage}>
-                <img src={props.user.logo} alt="" />
+                <NavLink to={'/profile/' + user.id}>
+                    <img src={user.photos.large != null ? user.photos.large : userPhoto} alt="" />
+                </NavLink>
             </div>
             <div className={style.userInfo}>
-                <div className={style.userName}>{props.user.name}</div>
-                <div className={style.userStatus}>{props.user.status}</div>
-                {props.user.subscribe ?
+                <NavLink to={'/profile/' + user.id}>
+                    <div className={style.userName}>{user.name} </div>
+                </NavLink>
+                <div className={style.userStatus}>{user.status}</div>
+                {user.followed ?
                     <button
                         className={style.subscribe + ' ' + style.active}
                         onClick={onUnSubscribe}
@@ -30,7 +36,7 @@ const User = (props) => {
                         onClick={onSubscribe}
                     >Подписаться</button>}
             </div>
-        </div>
+        </div >
     )
 }
 

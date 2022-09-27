@@ -8,7 +8,7 @@ export const Sidebar = () => {
             <nav className={s.navbar}>
                 <ul>
                     <li>
-                        <NavLink to='/' className={({ isActive }) => isActive ? `${s.active}` : ""}>Profile</NavLink>
+                        <NavLink to='/profile' className={({ isActive }) => isActive ? `${s.active}` : ""}>Profile</NavLink>
                     </li>
                     <li>
                         <NavLink to='/dialogs' className={({ isActive }) => isActive ? `${s.active}` : ""}>Dialogs</NavLink>
