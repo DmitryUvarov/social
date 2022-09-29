@@ -7,11 +7,12 @@ const User = (props) => {
     let user = props.user;
 
     let onSubscribe = () => {
-        props.subscribe(props.user.id)
+        props.followUser(user.id)
     }
     let onUnSubscribe = () => {
-        props.unsubscribe(props.user.id)
+        props.unfollowUser(user.id)
     }
+
 
     return (
         <div className={style.user}>
@@ -27,11 +28,13 @@ const User = (props) => {
                 <div className={style.userStatus}>{user.status}</div>
                 {user.followed ?
                     <button
+                        disabled={props.followingInProgress.some(id => id == user.id)}
                         className={style.subscribe + ' ' + style.active}
                         onClick={onUnSubscribe}
                     >Отписаться</button>
                     :
                     <button
+                        disabled={props.followingInProgress.some(id => id == user.id)}
                         className={style.subscribe}
                         onClick={onSubscribe}
                     >Подписаться</button>}

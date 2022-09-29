@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Header from './components/Header/Header'
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Main } from "./components/Main";
 import './App.scss';
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App(props) {
 
   return (
     <div className="App">
       <Router>
-        <Header />
+        <HeaderContainer />
         <Sidebar />
         <Main />
       </Router>

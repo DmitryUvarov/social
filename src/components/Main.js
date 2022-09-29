@@ -18,6 +18,7 @@ export const Main = (props) => {
                 <Route path="/dialogs/*" element={<DialogsContainer />} />
                 <Route path="/users" element={<UsersContainer />} />
                 <Route path="/news" element={<News />} />
+                {/* <Route path="/login" element={<News />} /> */}
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </div>

@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const SHOW_MORE = 'SHOW_MORE';
 const SUBSCRIBE = 'SUBSCRIBE';
 const UNSUBSCRIBE = 'UNSUBSCRIBE';
@@ -7,6 +9,7 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const GET_USERS_QUERY = 'GET_USERS_QUERY';
 const SET_QUERY = 'SET_QUERY';
 const IS_FETCHING = 'IS_FETCHING';
+const TOOGLE_IS_FOLLOWING_PROGRESS = 'TOOGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
     users: [],
@@ -16,6 +19,7 @@ let initialState = {
     usersQuery: '',
     queryText: '',
     isFetching: false,
+    followingInProgress: []
 }
 
 
@@ -43,6 +47,15 @@ const usersPageReducer = (state = initialState, action) => {
                     }
                     return user
                 }),
+            }
+        }
+
+        case TOOGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
             }
         }
 
@@ -96,5 +109,39 @@ export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_
 export const setUsersQuery = (usersQuery) => ({ type: GET_USERS_QUERY, usersQuery })
 export const setQuery = (queryText) => ({ type: SET_QUERY, queryText })
 export const setLoaded = (isFetching) => ({ type: IS_FETCHING, isFetching })
+export const toggleFolowingProgress = (isFetching, userId) => ({ type: TOOGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
+
+// THUNK
+
+export const getUsers = (currentPage, pageSize, queryText) => (dispatch) => {
+    dispatch(setLoaded(false));
+    usersAPI.getUsers(currentPage, pageSize, queryText)
+        .then(data => {
+            dispatch(setLoaded(true));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        })
+}
+
+export const follow = (userId) => (dispatch) => {
+    dispatch(toggleFolowingProgress(true, userId))
+    usersAPI.follow(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(subscribe(userId))
+            }
+            dispatch(toggleFolowingProgress(false, userId))
+        })
+}
+export const unfollow = (userId) => (dispatch) => {
+    dispatch(toggleFolowingProgress(true, userId))
+    usersAPI.unfollow(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unsubscribe(userId))
+            }
+            dispatch(toggleFolowingProgress(false, userId))
+        })
+}
 
 export default usersPageReducer;
